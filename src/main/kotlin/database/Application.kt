@@ -16,12 +16,14 @@ open class Application {
 
     @Bean
     open fun init(repository: PessoaRepository) = CommandLineRunner {
-        // save a couple of customers
+
+        /* save a couple of customers
         repository.save(Pessoa("Lucas Ramos 1", 27, "lucas1@lucas.com.br", "Whatapp", "11973672751"))
         repository.save(Pessoa("Lucas Ramos 2", 27, "lucas2@lucas.com.br", "Telefone", "11973672752"))
         repository.save(Pessoa("Lucas Ramos 3", 27, "lucas3@lucas.com.br", "Email", "11973672753"))
         repository.save(Pessoa("Lucas Ramos 4", 27, "lucas4@lucas.com.br", "Telefone", "11973672754"))
         repository.save(Pessoa("Lucas Ramos 5", 27, "lucas5@lucas.com.br", "Email", "11973672755"))
+        */
 
         // fetch all customers
         log.info("Customers found with findAll():")
