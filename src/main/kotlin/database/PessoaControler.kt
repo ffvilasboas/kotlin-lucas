@@ -13,25 +13,25 @@ class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
     private val log = LoggerFactory.getLogger(Application::class.java)
 
     @RequestMapping("/database")
-    fun findAll(){
-        var lista: List<Pessoa> = repository.findAll();
+    fun findAll(): List<Pessoa>{
+        var lista: List<Pessoa> = repository.findAll()
         for(pessoa in lista){
             log.info(pessoa.toString())
         }
-        lista
+        return lista
     }
 
     @RequestMapping("/database/{nomeCompleto}")
-    fun findByLastName(@PathVariable nomeCompleto:String){
+    fun findByLastName(@PathVariable nomeCompleto:String):Iterable<Pessoa>{
         log.info("Procurando pelo cliente: " +nomeCompleto)
-        repository.findByNomeCompleto(nomeCompleto)
+        return repository.findByNomeCompleto(nomeCompleto)
     }
 
 
     @RequestMapping("/database/incluir", method = arrayOf(RequestMethod.POST))
-    fun salvarPessoa(@RequestBody pessoa: Pessoa){
+    fun salvarPessoa(@RequestBody pessoa: Pessoa): Pessoa{
         var pessoa = repository.save(pessoa)
         log.info("Incluindo o cliente: " +pessoa.toString())
-        pessoa
+        return pessoa
     }
 }
