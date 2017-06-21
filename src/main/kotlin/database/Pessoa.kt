@@ -12,10 +12,14 @@ import javax.persistence.Id
 data class Pessoa (
 
     var nomeCompleto:String = "",
-    var idade:Int = 0,
-    var email:String = "",
-    var tipoContato:String = "",
+    var telefoneFixo:String = "",
     var telefoneContato:String = "",
+    var email:String = "",
+    var quantidade:Int = 0,
+    var opAtual:String = "",
+    var razaoSocial:String = "",
+    var cnpj:String = "",
+    var tipoContato:String="",
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0
 

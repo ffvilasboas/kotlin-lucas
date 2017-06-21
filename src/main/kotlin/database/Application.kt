@@ -23,7 +23,6 @@ open class Application {
         repository.save(Pessoa("Lucas Ramos 3", 27, "lucas3@lucas.com.br", "Email", "11973672753"))
         repository.save(Pessoa("Lucas Ramos 4", 27, "lucas4@lucas.com.br", "Telefone", "11973672754"))
         repository.save(Pessoa("Lucas Ramos 5", 27, "lucas5@lucas.com.br", "Email", "11973672755"))
-        */
 
         // fetch all customers
         log.info("Customers found with findAll():")
@@ -47,6 +46,7 @@ open class Application {
             log.info(bauer.toString())
         }
         log.info("")
+        */
     }
 
     companion object {
