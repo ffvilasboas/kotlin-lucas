@@ -10,17 +10,17 @@ import javax.persistence.Id
  */
 @Entity
 data class Pessoa (
-        var nomeCompleto:String = "",
-        var telefoneFixo:String = "",
-        var telefoneContato:String = "",
-        var email:String = "",
-        var quantidade:Int = 0,
-        var opAtual:String = "",
-        var razaoSocial:String = "",
-        var cnpj:String = "",
-        var tipoContato:String="",
-        var ofertou:OfertaVenda=OfertaVenda.SEM_OFERTA,
-        var vendeu:OfertaVenda=OfertaVenda.SEM_OFERTA,
-        @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    var nomeCompleto:String = "",
+    var telefoneFixo:String = "",
+    var telefoneContato:String = "",
+    var email:String = "",
+    var quantidade:Int = 0,
+    var opAtual:String = "",
+    var razaoSocial:String = "",
+    var cnpj:String = "",
+    var tipoContato:String="",
+    var ofertou:OfertaVenda=OfertaVenda.SEM_OFERTA,
+    var vendeu:OfertaVenda=OfertaVenda.SEM_OFERTA,
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0
 )
