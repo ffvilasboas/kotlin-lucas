@@ -34,4 +34,11 @@ class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
         log.info("Incluindo o cliente: " +pessoa.toString())
         return pessoa
     }
+
+    @RequestMapping("/database/atualizar", method = arrayOf(RequestMethod.POST))
+    fun atualizarPessoa(@RequestBody pessoa: Pessoa): Pessoa{
+        var pessoa = repository.save(pessoa)
+        log.info("Cliente atualizado: " +pessoa.toString())
+        return pessoa
+    }
 }

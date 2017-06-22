@@ -10,7 +10,6 @@ import javax.persistence.Id
  */
 @Entity
 data class Pessoa (
-
     var nomeCompleto:String = "",
     var telefoneFixo:String = "",
     var telefoneContato:String = "",
@@ -20,7 +19,8 @@ data class Pessoa (
     var razaoSocial:String = "",
     var cnpj:String = "",
     var tipoContato:String="",
+    var ofertou:Boolean=false,
+    var vendeu:Boolean=false,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0
-
 )
