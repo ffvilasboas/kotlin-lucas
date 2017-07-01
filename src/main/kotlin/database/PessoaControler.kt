@@ -2,9 +2,10 @@ package database
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestMethod
+import org.springframework.web.bind.annotation.RestController
 
 
 /**
@@ -15,14 +16,14 @@ import org.springframework.web.bind.annotation.*
 class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
 
     private val log = LoggerFactory.getLogger(Application::class.java)
-
-
+/*
     @RequestMapping(value = "/**", method = arrayOf(RequestMethod.OPTIONS))
     fun handle(): ResponseEntity<HttpStatus>{
         return ResponseEntity(HttpStatus.OK)
     }
+*/*/
 
-    @RequestMapping("/all")
+    @RequestMapping("/lista", method = arrayOf(RequestMethod.GET))
     fun findAll(): List<Pessoa>{
         var lista: List<Pessoa> = repository.findAll()
         for(pessoa in lista){
@@ -31,23 +32,15 @@ class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
         return lista
     }
 
-    @RequestMapping("/{nomeCompleto}")
-    fun findByLastName(@PathVariable nomeCompleto:String):Iterable<Pessoa>{
-        log.info("Procurando pelo cliente: " +nomeCompleto)
-        return repository.findByNomeCompleto(nomeCompleto)
+    @RequestMapping("/listaSemOferta", method = arrayOf(RequestMethod.GET))
+    fun findByVendeu(): List<Pessoa>{
+        return repository.findByVendeu(OfertaVenda.SEM_OFERTA)
     }
 
     @RequestMapping("/incluir", method = arrayOf(RequestMethod.POST))
     fun salvarPessoa(@RequestBody pessoa: Pessoa): Pessoa{
         var pessoa = repository.save(pessoa)
         log.info("Incluindo o cliente: " +pessoa.toString())
-        return pessoa
-    }
-
-    @RequestMapping("/atualizar", method = arrayOf(RequestMethod.POST))
-    fun atualizarPessoa(@RequestBody pessoa: Pessoa): Pessoa{
-        var pessoa = repository.save(pessoa)
-        log.info("Cliente atualizado: " +pessoa.toString())
         return pessoa
     }
 }
