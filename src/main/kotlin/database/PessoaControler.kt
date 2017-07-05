@@ -16,12 +16,6 @@ import org.springframework.web.bind.annotation.RestController
 class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
 
     private val log = LoggerFactory.getLogger(Application::class.java)
-/*
-    @RequestMapping(value = "/**", method = arrayOf(RequestMethod.OPTIONS))
-    fun handle(): ResponseEntity<HttpStatus>{
-        return ResponseEntity(HttpStatus.OK)
-    }
-*/*/
 
     @RequestMapping("/lista", method = arrayOf(RequestMethod.GET))
     fun findAll(): List<Pessoa>{
@@ -32,13 +26,17 @@ class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
         return lista
     }
 
-    @RequestMapping("/listaSemOferta", method = arrayOf(RequestMethod.GET))
+    @RequestMapping("/listaClientesPendentes", method = arrayOf(RequestMethod.GET))
     fun findByVendeu(): List<Pessoa>{
-        return repository.findByVendeu(OfertaVenda.SEM_OFERTA)
+        return repository.findByFechamento(Fechamento.INICIADO)
     }
 
     @RequestMapping("/incluir", method = arrayOf(RequestMethod.POST))
     fun salvarPessoa(@RequestBody pessoa: Pessoa): Pessoa{
+        if(pessoa.status.equals(Status.VENDIDO) || pessoa.status.equals(Status.PERDIDO)){
+            pessoa.fechamento = Fechamento.FINALZIADO
+        }
+
         var pessoa = repository.save(pessoa)
         log.info("Incluindo o cliente: " +pessoa.toString())
         return pessoa

@@ -1,9 +1,6 @@
 package database
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Created by kritiuns on 16/06/17.
@@ -11,6 +8,7 @@ import javax.persistence.Id
 @Entity
 data class Pessoa (
     var nomeCompleto:String = "",
+    @Column(nullable = true)
     var telefoneFixo:String = "",
     var telefoneContato:String = "",
     var email:String = "",
@@ -19,8 +17,8 @@ data class Pessoa (
     var razaoSocial:String = "",
     var cnpj:String = "",
     var tipoContato:String="",
-    var ofertou:OfertaVenda=OfertaVenda.SEM_OFERTA,
-    var vendeu:OfertaVenda=OfertaVenda.SEM_OFERTA,
+    var status: Status = Status.SEM_OFERTA,
+    var fechamento: Fechamento = Fechamento.INICIADO,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0
 )
