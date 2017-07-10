@@ -1,5 +1,6 @@
 package database
 
+import java.util.*
 import javax.persistence.*
 
 /**
@@ -19,6 +20,7 @@ data class Pessoa (
     var tipoContato:String="",
     var status: Status = Status.SEM_OFERTA,
     var fechamento: Fechamento = Fechamento.INICIADO,
+    var dataCriacao: Long= 0,
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long = 0
 )

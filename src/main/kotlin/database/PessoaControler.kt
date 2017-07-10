@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
+import java.util.*
 
 
 /**
@@ -37,6 +38,7 @@ class PessoaControler  @Autowired constructor(val repository:PessoaRepository) {
             pessoa.fechamento = Fechamento.FINALZIADO
         }
 
+        pessoa.dataCriacao = Date().time
         var pessoa = repository.save(pessoa)
         log.info("Incluindo o cliente: " +pessoa.toString())
         return pessoa
